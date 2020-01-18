@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+
+        Separación:
+        ___________
+
+
+        separación de la representación y el recurso
+
+        de ésta manera, un recurso es simplemente un conjunto de información y puede tener múltiples representaciones
+
+
+        de ésta manera, un recurso no tiene estado dentro de rest, corresponde al que llama al recurso especificar en el encabezado de la petición http, el tipo de contenido
+
+
+        una vez recibida esa información será la aplicación del servidor la encargada de manejar la representación y de devolver el estado http, apropiado, como una http 200, 400, 500, ó un ok en caso de éxito, otros
+
+
+            tabla de elementos
+
+                Data Element            Modern Web Example
+
+                resource                the intended conceptual target of a hypertext reference
+
+                resource identifier     URL, URN
+                        
+                representation          HTML document. JPEG image
+
+                representation metadata media type, last-modified time
+
+                resorce metadata        source link, alternate, very
+
+                control data            if-modified-since, cache-control
+
+
+        ejemplo:
+
+        asumamos que en el lado del servidor tenemos los recursos almacenados en un recurso xml
+
+
+        y tenemos un api, que permite ha un consumidor solicitar el recurso en varios formatos como json, zip, xml
+
+
+         más será la api misma la encargada de cargar los recursos solicitados transformándolos en el tipo requerido 
+                
+                
+        por ejemplo; json, xml, ó zip para comprimir los archivos y enviarlos como respuestas http de salida
+
+
+        es la cabecera http, aceptada la que especifica la representación esperada de los datos de respuesta 
+
+
+        por tanto para llevar a cabo una petición de datos, por ejemplo en formato xml, debe ejecutarse una petición como ésta:
+
+
+            Get /data/balance/22082014 HTTP/1.1
+            Host: nombrehost-mi-servidor
+            Accept: text/xml
+
+            HTTP/1.1 200 OK
+            Content-Type: text/xml
+            Content-Length: 140
+
+            <?xml version="1.0" encoding="utf-8"?>
+            <envio fecha="20082014">
+            <Item>Ejemplo Item</Item>
+                <peso medida="Kilos">23</peso>
+            </envio>
+
+
+        mientras que para solicitar el mismo balance en formato json, la cabecera de aceptación necesita ser configurada ha "aplication json", ej:
+
+
+            GET /data/balance/22082014 HTTP/1.1
+            Host: nombrehost-mi-servidor
+            Accept: application/json
+
+            HTTP/1.1 200 OK
+            Content-Type: application/json
+            Content-Length: 120
+
+                {
+                    "envio": "22082014",
+                    "Item": "Ejemplo Item",
+                    "Peso": {
+                        "-medida": "Kilos",
+                        "#text": "100"
+                    }
+                }
+
+
+
+
+        
+
+    -->
+</body>
+</html>
